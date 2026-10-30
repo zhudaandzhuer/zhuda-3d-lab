@@ -5,7 +5,9 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 const root = path.resolve(import.meta.dirname, ".."),
-  evidence = path.resolve(process.env.EVIDENCE_DIR || path.join(root, "evidence")),
+  evidence = path.resolve(
+    process.env.EVIDENCE_DIR || path.join(root, "evidence"),
+  ),
   url = process.env.GAME_URL || "http://localhost:8916/zhuda-3d-lab/";
 fs.mkdirSync(evidence, { recursive: true });
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "zhuda-terrain-")),
@@ -136,8 +138,36 @@ try {
   await shot("05-terrain-3d");
   const rendered = await ev(A + ".metrics()");
   assert.ok(rendered.drawCalls > 0 && rendered.triangles > 0);
-  assert.equal(rendered.sampleModeFrames[2] + rendered.sampleModeFrames[3], rendered.frames);
-  checks.push({ name: "real terrain meshes and four shader fixtures render", drawCalls: rendered.drawCalls, triangles: rendered.triangles });
+  assert.equal(
+    rendered.sampleModeFrames[2] + rendered.sampleModeFrames[3],
+    rendered.frames,
+  );
+  checks.push({
+    name: "real terrain meshes and four shader fixtures render",
+    drawCalls: rendered.drawCalls,
+    triangles: rendered.triangles,
+  });
+  const solid = await ev(
+    `(()=>{const a=${A},f=a.field,p=f.sample(.7,.3),bottom=a.terrain.raycast({origin:{x:.7,y:-40,z:.3},direction:{x:0,y:1,z:0}}),edge=f.sample(32,0),side=a.terrain.raycast({origin:{x:40,y:edge.height-2,z:0},direction:{x:-1,y:0,z:0}});return{report:a.terrain.report(),bottomError:Math.abs(bottom.position.y-(p.height-12)),bottomNormal:bottom.normal.y,sideX:side.position.x,sideNormal:side.normal.x}})()`,
+  );
+  assert.equal(solid.report.renderMeshes, 8);
+  assert.ok(solid.bottomError < 1e-5 && solid.bottomNormal < 0);
+  assert.ok(Math.abs(solid.sideX - 32) < 1e-5 && solid.sideNormal > 0.9);
+  checks.push({
+    name: "closed terrain underside and side walls match nearest queries",
+    ...solid,
+  });
+  const cameraSafe = await ev(
+    `(()=>{const a=${A},focus={x:0,y:a.field.sample(0,0).height+2,z:0};a.rig.pitch=-1.1;a.rig.update(focus);const p=a.camera.transform.position,s=a.field.sample(p.x,p.z);a.rig.pitch=.8;return{height:p.y,ground:s?.height,clearance:p.y-s.height}})()`,
+  );
+  assert.ok(cameraSafe.clearance > 0.1);
+  checks.push({
+    name: "camera boom cannot orbit through the terrain",
+    ...cameraSafe,
+  });
+  await ev("document.querySelector('[data-action=underground]').click()");
+  await shot("05b-terrain-underside");
+  await ev("document.querySelector('[data-action=underground]').click()");
   const edits = await ev(
     `(()=>{const a=${A};a.brush();const left=a.terrain.chunkSnapshot('0:0'),right=a.terrain.chunkSnapshot('1:0'),other=a.terrain.chunkSnapshot('0:1');let maxError=0;for(let j=0;j<left.zs.length;j++){const li=(j*left.xs.length+left.xs.length-1)*8,ri=j*right.xs.length*8;for(let k=0;k<6;k++)maxError=Math.max(maxError,Math.abs(left.vertices[li+k]-right.vertices[ri+k]));}const p=a.field.sample(0,0),h=a.queries.raycast({origin:{x:0,y:40,z:0},direction:{x:0,y:-1,z:0}});return{maxError,height:p.height,hit:h.position.y,id:h.instanceId}})()`,
   );
@@ -196,13 +226,19 @@ try {
   const atlasSecond = await pixel(210, point.y);
   assert.ok(atlasSecond[0] > atlasSecond[1] && atlasSecond[1] > atlasSecond[2]);
   assert.ok(original[1] > original[0]);
-  await ev(`(()=>{const a=${A},L=labHost.frame.contentWindow.Laya;a.map.root.scrollRect=new L.Rectangle(0,0,10,10)})()`);
+  await ev(
+    `(()=>{const a=${A},L=labHost.frame.contentWindow.Laya;a.map.root.scrollRect=new L.Rectangle(0,0,10,10)})()`,
+  );
   await delay(150);
   const clipped = await pixel(point.x, point.y);
   assert.notDeepEqual(clipped, original);
-  assert.ok(Math.max(...clipped.slice(0,3)) < 40);
+  assert.ok(Math.max(...clipped.slice(0, 3)) < 40);
   await ev(A + ".map.root.scrollRect=null");
-  checks.push({ name: "2D atlas UV regions and graphics scrollRect clipping", atlasSecond, clipped });
+  checks.push({
+    name: "2D atlas UV regions and graphics scrollRect clipping",
+    atlasSecond,
+    clipped,
+  });
   const tiles = await ev(
     `(()=>{const a=${A};a.paint();const before=a.map.residentChunks;a.stream(900);const far=a.map.residentChunks;a.stream(0);return{before,far,blocked:a.tiles.isBlocked(16,6),id:a.tiles.getTile('build',16,6)}})()`,
   );
@@ -225,19 +261,51 @@ try {
   await ev(A + ".setMode(3)");
   await ev(A + ".scene.enableFog=false");
   await delay(150);
-  const texturePoint = await ev(`(()=>{const a=${A},p=a.coords.worldToScreen(a.nodes[2].transform.position),r=labHost.frame.getBoundingClientRect();return{x:Math.round(p.x+r.left),y:Math.round(p.y+r.top)}})()`);
+  const texturePoint = await ev(
+    `(()=>{const a=${A},p=a.coords.worldToScreen(a.nodes[2].transform.position),r=labHost.frame.getBoundingClientRect();return{x:Math.round(p.x+r.left),y:Math.round(p.y+r.top)}})()`,
+  );
   const textureBefore = await pixel(texturePoint.x, texturePoint.y);
   await ev(A + `.textured.setUniform('u_ZhudaTint',[0,0,0,1])`);
   await delay(150);
   const textureBlack = await pixel(texturePoint.x, texturePoint.y);
-  assert.ok(Math.max(...textureBefore.slice(0,3)) > 40);
-  assert.ok(Math.max(...textureBlack.slice(0,3)) < 8);
+  assert.ok(Math.max(...textureBefore.slice(0, 3)) > 40);
+  assert.ok(Math.max(...textureBlack.slice(0, 3)) < 8);
   await ev(A + `.textured.setUniform('u_ZhudaTint',[1,1,1,1])`);
   await ev(A + ".scene.enableFog=true");
   await delay(150);
   const foggedTexture = await pixel(texturePoint.x, texturePoint.y);
   assert.notDeepEqual(foggedTexture, textureBefore);
-  checks.push({name: "3D sRGB texture recipe, typed uniform and fog variants change actual output pixels", textureBefore, textureBlack, foggedTexture});
+  checks.push({
+    name: "3D sRGB texture recipe, typed uniform and fog variants change actual output pixels",
+    textureBefore,
+    textureBlack,
+    foggedTexture,
+  });
+  await ev(
+    "(" +
+      A +
+      ".nodes[2].meshRenderer.sharedMaterial=" +
+      A +
+      ".noFog.material,true)",
+  );
+  await delay(150);
+  const noFogTexture = await pixel(texturePoint.x, texturePoint.y);
+  assert.ok(
+    textureBefore
+      .slice(0, 3)
+      .every((x, i) => Math.abs(x - noFogTexture[i]) <= 2),
+  );
+  await ev(
+    "(" +
+      A +
+      ".nodes[2].meshRenderer.sharedMaterial=" +
+      A +
+      ".textured.material,true)",
+  );
+  checks.push({
+    name: "3D sky/background shader can opt out of scene fog",
+    noFogTexture,
+  });
   await ev(A + `.dissolve.setUniform('u_ZhudaAmount',0)`);
   const visible = await shot("07-shader-visible");
   await ev(A + `.dissolve.setUniform('u_ZhudaAmount',1)`);

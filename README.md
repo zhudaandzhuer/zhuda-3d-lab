@@ -21,6 +21,10 @@ npm start
 
 地形／shader 驗收頁使用 `?terrain=1`（可加 `&quality=low&route=1`）。它同時建立 2D tile chunks 和 3D heightfield chunks；可切換圖塊筆刷／抬高地形、LOD 1→2→4、atlas tint 與 dissolve shader。畫面中的 cell ID、chunk 數、LOD、raycast 與 shader pixel 變化都由真實 SDK 呼叫產生，並不是靜態展示。
 
+3D 地形已加上沿 local -Y 延伸 12 單位的側壁與底面。正常模式會以相機 boom probes 保持地表外的視角；按「地下檢視」才明確停用相機避障，查看封閉底面。這是擠出的高度場，沒有洞穴／任意體積地形；各 chunk 獨立封口會增加內部側壁成本。
+
+![地表與地下檢視](docs/terrain-solid.jpg)
+
 ```sh
 npm test
 # 非 macOS 可設定 CHROME_PATH 指向 Chromium/Chrome 執行檔
@@ -43,11 +47,11 @@ GAME_URL=http://localhost:8914/ npm test
 - GPU transform feedback：同一份 WAVE_GLSL，四個時間共 256 點；最大高度差約 0.012 mm。這是波浪函式採樣，非整張畫面的逐像素一致。
 - 模型／場景反覆建立與釋放 30 次，資源數保持有界；共享 JPG 仍有效，一個角色受擊不改變另一個同皮膚角色。
 - 實際 depth／opaque camera pass 與低畫質預算拒絕；動態 buffer 更新／bounds、屋頂擋雨、DPR 1／2／3、橫豎屏 CSS 座標、雙指取消／放開、iframe 預覽拆除、WebGL context loss 還原及 opaque sandbox。
-- 最新固定版另以 iPhone 剪貼簿貼入 URL，實體觸控驗證拖曳／放開與受擊按鈕；同皮膚另一角色保持原色，見 `evidence/iphone14-input-check.json`／PNG。
+- 先前固定版另以 iPhone 剪貼簿貼入 URL，實體觸控驗證拖曳／放開與受擊按鈕；同皮膚另一角色保持原色，見 `evidence/iphone14-input-check.json`／PNG。這份手機記錄早於本次地形封口更新。
 - `evidence/iphone14-10min.json`：iPhone 14 Safari 27.0.1，low、DPR 1，614.525 秒有效採樣，36,545 frames；P50 17 ms、P95 20 ms、P99 24 ms，>50 ms 長幀 0。採樣期間自動航行及每 45 秒晴雨交替。
-- `evidence/terrain-report.json`：terrain／shader 的真實 WebGL 回歸，包含 2D atlas UV／tint／透明度／clipping，3D textured／fog／dissolve，跨 chunk 編輯、LOD、世界距離上限、30 次拆除、context loss 和 opaque sandbox。故意錯誤的 GLSL 另保留預期 compile diagnostic。
+- 本次固定 SDK 通過 20 項海域接入及 21 項地形／shader WebGL 檢查。`evidence/terrain-report.json` 包含 2D atlas UV／tint／透明度／clipping，3D textured／fog／dissolve／fog opt-out，跨 chunk 編輯、LOD、底面／側壁查詢、相機避障、世界距離上限、30 次拆除、context loss 和 opaque sandbox。故意錯誤的 GLSL 另保留預期 compile diagnostic。
 - `evidence/terrain-mobile-acceptance.json`：iPhone 14 與 vivo V40 各保存 72,000 筆最近 frame interval，約 20 分鐘樣本；low／DPR1，每 30 個 active 秒切換 2D／3D，帶 camera orbit／map scroll 與 dissolve 動畫。P95 分別 22 ms／19.6 ms，P99 23 ms／21.6 ms；>50 ms 分別 4／85 幀。超過五秒的中斷未納入統計，這不是不中斷的壓測；`modeFrames` 是整個 session 累計，和 rolling sample 的 `frames` 範圍不同。
-- iPhone 以剪貼簿輸入 URL，實機 LOD 按鈕操作後由 1 變 2；雙平台 2D／3D 畫面均已目視確認，截圖保存在 evidence。手機執行的是最終 ray distance 整理前的相同 rendering 切片；固定最終 Git SHA 另外通過桌面回歸。
+- iPhone 以剪貼簿輸入 URL，實機 LOD 按鈕操作後由 1 變 2；雙平台 2D／3D 畫面均已目視確認，截圖保存在 evidence。手機執行的是 ray distance 整理與本次地形封口之前的 rendering 切片；本次固定 Git SHA 通過桌面回歸，尚未重新做手機長時間測試。
 
 海域手機負載固定為 4 角色、1 木筏、1 船、1 雨棚、48 物資與最多 160 雨滴；不是百人完整地圖。地形測試固定為 4 heightfield chunks（LOD1 時共 4,356 vertices）、2D 視野 chunks、4 shader fixture cubes。GPU 時間未量測，資源容量是估算；記錄中的 vendor gpuBytesEstimated 也不是 driver measurement。
 

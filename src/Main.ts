@@ -44,9 +44,15 @@ window.addEventListener("error", (e) => {
 if (!q.has("runtime")) {
   if (q.has("terrain")) {
     document.querySelector("h1")!.textContent = "豬大地形工坊";
+    document.querySelector("header div > span")!.textContent = "地形編輯、材質與相機檢視";
     document.querySelector("[data-action=weather]")!.textContent = "抬高地形";
     document.querySelector("[data-action=route]")!.textContent = "圖塊筆刷";
     document.querySelector("[data-action=preview]")!.textContent = "2D / 3D";
+    const below = document.createElement("button");
+    below.dataset.action = "underground";
+    below.textContent = "地下檢視";
+    below.setAttribute("aria-pressed", "false");
+    document.querySelector("header nav")!.appendChild(below);
   }
   document.body.className = "host";
   ($("quality") as HTMLSelectElement).value = q.get("quality") || "medium";
@@ -66,6 +72,11 @@ if (!q.has("runtime")) {
   document.querySelectorAll<HTMLButtonElement>("[data-action]").forEach(
     (b) =>
       (b.onclick = () => {
+        if (b.dataset.action === "underground") {
+          const active = b.getAttribute("aria-pressed") !== "true";
+          b.setAttribute("aria-pressed", String(active));
+          b.textContent = active ? "返回地上／防穿透" : "地下檢視";
+        }
         if (b.dataset.action === "preview" && !q.has("terrain")) {
           $("preview").hidden = false;
           preview?.dispose();

@@ -3,8 +3,29 @@
   "checks": [
     {
       "name": "real terrain meshes and four shader fixtures render",
-      "drawCalls": 9,
-      "triangles": 8240
+      "drawCalls": 13,
+      "triangles": 17456
+    },
+    {
+      "name": "closed terrain underside and side walls match nearest queries",
+      "report": {
+        "residentChunks": 4,
+        "renderMeshes": 8,
+        "solidDepth": 12,
+        "stride": 1,
+        "vertices": 10760,
+        "estimatedBufferBytes": 448768
+      },
+      "bottomError": 1.7763568394002505e-15,
+      "bottomNormal": -0.9108599558814856,
+      "sideX": 32,
+      "sideNormal": 1
+    },
+    {
+      "name": "camera boom cannot orbit through the terrain",
+      "height": 6.574708593673022,
+      "ground": 5.600291910420617,
+      "clearance": 0.9744166832524055
     },
     {
       "name": "edited chunk seams, normals and exact triangle queries",
@@ -16,25 +37,31 @@
     {
       "name": "LOD 1 has matching queries",
       "residentChunks": 4,
+      "renderMeshes": 8,
+      "solidDepth": 12,
       "stride": 1,
-      "vertices": 4356,
-      "estimatedBufferBytes": 188544,
+      "vertices": 10760,
+      "estimatedBufferBytes": 448768,
       "error": 2.6645352591003757e-15
     },
     {
       "name": "LOD 2 has matching queries",
       "residentChunks": 4,
+      "renderMeshes": 8,
+      "solidDepth": 12,
       "stride": 2,
-      "vertices": 1156,
-      "estimatedBufferBytes": 49280,
+      "vertices": 3336,
+      "estimatedBufferBytes": 134400,
       "error": 0
     },
     {
       "name": "LOD 4 has matching queries",
       "residentChunks": 4,
+      "renderMeshes": 8,
+      "solidDepth": 12,
       "stride": 4,
-      "vertices": 324,
-      "estimatedBufferBytes": 13440,
+      "vertices": 1160,
+      "estimatedBufferBytes": 44800,
       "error": 0
     },
     {
@@ -119,9 +146,18 @@
         255
       ],
       "foggedTexture": [
-        214,
-        170,
-        86,
+        208,
+        165,
+        85,
+        255
+      ]
+    },
+    {
+      "name": "3D sky/background shader can opt out of scene fog",
+      "noFogTexture": [
+        231,
+        183,
+        89,
         255
       ]
     },
@@ -132,13 +168,13 @@
       "name": "30 terrain, shader and 2D chunk disposal cycles",
       "first": {
         "counts": {
-          "mesh": 5,
+          "mesh": 9,
           "texture": 13,
           "renderTarget": 5
         },
-        "resources": 34,
-        "estimatedBytes": 16284028,
-        "meshBytes": 189384,
+        "resources": 39,
+        "estimatedBytes": 16544252,
+        "meshBytes": 449608,
         "textureBytes": 128420,
         "renderTargetBytes": 15966224,
         "memoryMeasurement": "estimate",
@@ -146,13 +182,13 @@
       },
       "last": {
         "counts": {
-          "mesh": 5,
+          "mesh": 9,
           "texture": 13,
           "renderTarget": 5
         },
-        "resources": 34,
-        "estimatedBytes": 16284028,
-        "meshBytes": 189384,
+        "resources": 39,
+        "estimatedBytes": 16544252,
+        "meshBytes": 449608,
         "textureBytes": 128420,
         "renderTargetBytes": 15966224,
         "memoryMeasurement": "estimate",
@@ -183,48 +219,52 @@
   "metrics": {
     "id": "terrain-browser",
     "ready": true,
-    "elapsedSeconds": 14.9355,
-    "activeSeconds": 14.922699999928474,
-    "frames": 897,
+    "elapsedSeconds": 14.917700000047684,
+    "activeSeconds": 14.895399999976158,
+    "frames": 894,
     "sampleWindow": "Latest at most 72000 intervals under 5000ms; long gaps excluded",
     "sampleModeFrames": {
       "2": 0,
-      "3": 897
+      "3": 894
     },
-    "totalFrames": 897,
+    "totalFrames": 894,
     "excludedGaps": 0,
     "p50": 16.699999928474426,
-    "p95": 17.300000071525574,
-    "p99": 17.700000047683716,
+    "p95": 17.899999976158142,
+    "p99": 18.600000023841858,
     "longFrames": 0,
     "gpuTimeMs": null,
     "gpuTimeReason": "GPU timer unavailable / not collected",
-    "drawCalls": 9,
-    "triangles": 8240,
+    "drawCalls": 13,
+    "triangles": 17456,
     "quality": "medium",
     "dpr": 1,
     "mode": 3,
     "modeFrames": {
       "2": 0,
-      "3": 897
+      "3": 894
     },
     "route": false,
+    "underground": false,
+    "cameraCollision": true,
     "terrain": {
       "residentChunks": 4,
+      "renderMeshes": 8,
+      "solidDepth": 12,
       "stride": 1,
-      "vertices": 4356,
-      "estimatedBufferBytes": 188544
+      "vertices": 10760,
+      "estimatedBufferBytes": 448768
     },
     "mapChunks": 4,
     "resources": {
       "counts": {
-        "mesh": 5,
+        "mesh": 9,
         "texture": 13,
         "renderTarget": 5
       },
-      "resources": 35,
-      "estimatedBytes": 10887308,
-      "meshBytes": 189384,
+      "resources": 41,
+      "estimatedBytes": 11147532,
+      "meshBytes": 449608,
       "textureBytes": 128420,
       "renderTargetBytes": 10569504,
       "memoryMeasurement": "estimate",
@@ -232,5 +272,5 @@
     },
     "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
   },
-  "verifiedAt": "2026-10-30T08:00:30.340Z"
+  "verifiedAt": "2026-10-30T09:03:22.418Z"
 }

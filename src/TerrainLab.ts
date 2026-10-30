@@ -36,6 +36,7 @@ export async function terrainMain() {
     mode,
     stride,
     quality,
+    underground,
     field: field.toJSON(),
     tiles: tiles.toJSON(),
   });
@@ -79,7 +80,17 @@ export async function terrainMain() {
       backingHeight: ctx.canvas.height,
     };
   });
-  const terrainShader = new ZhudaShaderMaterial(shaderRecipes.terrain3D),
+  const rockShader = new ZhudaShaderMaterial({
+      ...shaderRecipes.terrain3D,
+      name: "ZhudaTerrainRockShell",
+      uniforms: {
+        ...shaderRecipes.terrain3D.uniforms,
+        u_ZhudaGrass: { type: "vec3", value: [0.22, 0.15, 0.12] },
+        u_ZhudaRock: { type: "vec3", value: [0.36, 0.25, 0.18] },
+        u_ZhudaSnowLine: { type: "float", value: 100 },
+      },
+    }),
+    terrainShader = new ZhudaShaderMaterial(shaderRecipes.terrain3D),
     tint = new ZhudaShaderMaterial(shaderRecipes.tint2D),
     dissolve = new ZhudaShaderMaterial(shaderRecipes.dissolve3D);
   const pixels = new Uint8Array(8 * 4 * 4);
@@ -95,6 +106,10 @@ export async function terrainMain() {
   const textured = new ZhudaShaderMaterial(shaderRecipes.textured3D, {
     u_ZhudaTexture: atlasData,
   });
+  const noFog = new ZhudaShaderMaterial(
+    { ...shaderRecipes.textured3D, name: "ZhudaNoFogFixture", fog: false },
+    { u_ZhudaTexture: atlasData },
+  );
   let field = ZhudaHeightfield.generate({
     cellsX: 64,
     cellsZ: 64,
@@ -135,6 +150,7 @@ export async function terrainMain() {
   let terrain = new ZhudaTerrain3D(field, {
       parent: scene,
       material: terrainShader.material,
+      solid: { depth: 12, material: rockShader.material },
       chunkCells: 32,
       maxResidentChunks: 4,
     }),
@@ -149,6 +165,15 @@ export async function terrainMain() {
   terrain.setRegion(full);
   const queries = new ZhudaSceneQueries();
   let off = queries.register(terrain.queryProvider("terrain", 4));
+  const collision = { queries, radius: 0.5, clearance: 0.3, layerMask: 4 };
+  let underground = false;
+  rig.options.collision = collision;
+  const setUnderground = (value: boolean) => {
+    underground = value;
+    rig.options.collision = value ? undefined : collision;
+    rig.pitch = value ? -0.5 : 0.8;
+    $("underground").textContent = value ? "返回地上／防穿透" : "地下檢視";
+  };
   const pbr = createSurfaceMaterial({
       type: "pbr",
       color: [0.7, 0.3, 0.14, 1],
@@ -190,12 +215,17 @@ export async function terrainMain() {
   const samples: number[] = [];
   const sampleModes: (2 | 3)[] = [];
   const sampleModeFrames = { 2: 0, 3: 0 };
-  const modeFrames={2:0,3:0};
-  let sampleCursor = 0, excludedGaps = 0, totalFrames = 0;
+  const modeFrames = { 2: 0, 3: 0 };
+  let sampleCursor = 0,
+    excludedGaps = 0,
+    totalFrames = 0;
   const profiler = new ZhudaRuntimeProfiler();
-  profiler.attach(ctx.canvas.getContext("webgl2") || ctx.canvas.getContext("webgl"));
+  profiler.attach(
+    ctx.canvas.getContext("webgl2") || ctx.canvas.getContext("webgl"),
+  );
   profiler.beginFrame();
-  let drawCalls = 0, triangles = 0;
+  let drawCalls = 0,
+    triangles = 0;
   const started = performance.now();
   let last = started;
   const view = () => {
@@ -238,6 +268,7 @@ export async function terrainMain() {
     terrain = new ZhudaTerrain3D(field, {
       parent: scene,
       material: terrainShader.material,
+      solid: { depth: 12, material: rockShader.material },
       chunkCells: 32,
       maxResidentChunks: 4,
     });
@@ -253,8 +284,10 @@ export async function terrainMain() {
     changeStride(state.stride || 1);
     setQuality(state.quality || quality);
     setMode(state.mode === 2 ? 2 : 3);
+    setUnderground(state.underground === true);
   };
   const actions = (type: string, state: any) => {
+    if (type === "lab:underground") setUnderground(!underground);
     if (type === "lab:weather") brush();
     if (type === "lab:route") paint();
     if (type === "lab:preview") setMode(mode === 2 ? 3 : 2);
@@ -312,6 +345,11 @@ export async function terrainMain() {
       }
     }
   });
+  const undergroundButton = document.createElement("button");
+  undergroundButton.id = "underground";
+  undergroundButton.textContent = "地下檢視";
+  document.querySelector("header nav")!.appendChild(undergroundButton);
+  undergroundButton.onclick = () => setUnderground(!underground);
   $("label").hidden = true;
   $("hit").textContent = "LOD 1 → 2 → 4";
   $("hit").onclick = () =>
@@ -326,7 +364,8 @@ export async function terrainMain() {
       elapsedSeconds: (performance.now() - started) / 1000,
       activeSeconds: samples.reduce((a, b) => a + b, 0) / 1000,
       frames: samples.length,
-      sampleWindow: "Latest at most 72000 intervals under 5000ms; long gaps excluded",
+      sampleWindow:
+        "Latest at most 72000 intervals under 5000ms; long gaps excluded",
       sampleModeFrames: { ...sampleModeFrames },
       totalFrames,
       excludedGaps,
@@ -342,7 +381,9 @@ export async function terrainMain() {
       dpr: ctx.canvas.width / ctx.canvas.getBoundingClientRect().width,
       mode,
       modeFrames,
-      route:q.has('route'),
+      route: q.has("route"),
+      underground,
+      cameraCollision: !underground,
       terrain: terrain.report(),
       mapChunks: map.residentChunks,
       resources: inspectSceneResources(),
@@ -392,6 +433,9 @@ export async function terrainMain() {
   };
   const api: any = {
     lifecycle,
+    setUnderground,
+    rockShader,
+    noFog,
     invalidShaderFixture,
     ready: true,
     ctx,
@@ -435,9 +479,15 @@ export async function terrainMain() {
   (window as any).terrainLab = api;
   ctx.runtime.start((dt: number) => {
     time += dt;
-    if(q.has('route')){const next:2|3=Math.floor(time/30)%2===0?3:2;if(next!==mode)setMode(next);rig.yaw=time*.06;scroll=(time*16)%900;animate=true;}
+    if (q.has("route")) {
+      const next: 2 | 3 = Math.floor(time / 30) % 2 === 0 ? 3 : 2;
+      if (next !== mode) setMode(next);
+      rig.yaw = time * 0.06;
+      scroll = (time * 16) % 900;
+      animate = true;
+    }
 
-    rig.update({ x: 0, y: 2, z: 0 });
+    rig.update({ x: 0, y: (field.sample(0, 0)?.height ?? 0) + 2, z: 0 });
     const now = performance.now(),
       ms = now - last;
     last = now;
@@ -465,7 +515,7 @@ export async function terrainMain() {
       dissolve.setUniform("u_ZhudaAmount", 0.45 + 0.35 * Math.sin(time));
     if (mode === 2) view();
     $("status").textContent =
-      `${mode === 3 ? "3D 高度地形" : "2D 分塊地圖"} · ${quality}\n${terrain.report().residentChunks} meshes · ${map.residentChunks} tile chunks · LOD ${stride}\n${selected || "點選取得穩定 cell ID"}`;
+      `${mode === 3 ? (underground ? "3D 封閉地形 · 地下檢視" : "3D 封閉地形 · 相機防穿透") : "2D 分塊地圖"} · ${quality}\n${terrain.report().renderMeshes} meshes · ${map.residentChunks} tile chunks · LOD ${stride}\n${selected || "點選取得穩定 cell ID"}`;
     if (now - lastSend > 15000) {
       lastSend = now;
       const r = metrics();

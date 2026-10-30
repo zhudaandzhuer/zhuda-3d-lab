@@ -1,4 +1,5 @@
 {
+  "sourceURL": "http://localhost:8915/zhuda-3d-lab/",
   "checks": [
     {
       "name": "GPU wave parity",
@@ -184,7 +185,7 @@
     {
       "name": "projection/ray 1200x800 DPR1",
       "alignment": {
-        "miss": 0.00019290064465670532,
+        "miss": 0.00019292130064049468,
         "canvas": 1200,
         "css": 1200,
         "dpr": 1,
@@ -194,7 +195,7 @@
     {
       "name": "projection/ray 1200x800 DPR2",
       "alignment": {
-        "miss": 0.00019304598291216413,
+        "miss": 0.00019304607622688287,
         "canvas": 1800,
         "css": 1200,
         "dpr": 2,
@@ -204,7 +205,7 @@
     {
       "name": "projection/ray 1200x800 DPR3",
       "alignment": {
-        "miss": 0.00019314103902041377,
+        "miss": 0.0001931526410539778,
         "canvas": 1800,
         "css": 1200,
         "dpr": 3,
@@ -214,7 +215,7 @@
     {
       "name": "projection/ray 390x844 DPR1",
       "alignment": {
-        "miss": 0.00022818081122636796,
+        "miss": 0.00022820496330501068,
         "canvas": 390,
         "css": 390,
         "dpr": 1,
@@ -224,7 +225,7 @@
     {
       "name": "projection/ray 390x844 DPR2",
       "alignment": {
-        "miss": 0.00022868425157472394,
+        "miss": 0.00022870188103244274,
         "canvas": 585,
         "css": 389.8141174316406,
         "dpr": 2,
@@ -234,7 +235,7 @@
     {
       "name": "projection/ray 390x844 DPR3",
       "alignment": {
-        "miss": 0.00022879174795376145,
+        "miss": 0.00022879179604212103,
         "canvas": 585,
         "css": 389.8141174316406,
         "dpr": 3,
@@ -254,7 +255,7 @@
     {
       "name": "projection/ray 844x390 DPR2",
       "alignment": {
-        "miss": 0.0001929427997677326,
+        "miss": 0.00019294268507501802,
         "canvas": 1266,
         "css": 844,
         "dpr": 2,
@@ -307,11 +308,11 @@
   "metrics": {
     "id": "browser",
     "ready": true,
-    "elapsedSeconds": 14.967,
-    "activeSeconds": 14.856599999904633,
-    "frames": 892,
+    "elapsedSeconds": 14.9605,
+    "activeSeconds": 14.829100000023843,
+    "frames": 890,
     "p50": 16.699999928474426,
-    "p95": 17.600000023841858,
+    "p95": 17.700000047683716,
     "p99": 18.100000023841858,
     "longFrames": 0,
     "gpuTimeMs": null,
@@ -388,7 +389,7 @@
     },
     "interruptions": 0,
     "state": {
-      "time": 14.866099999999914,
+      "time": 14.832699999999921,
       "weather": false,
       "route": false,
       "target": {
@@ -400,5 +401,5 @@
     },
     "selected": ""
   },
-  "verifiedAt": "2026-10-30T07:53:30.407Z"
+  "verifiedAt": "2026-10-30T09:02:59.741Z"
 }
