@@ -1,0 +1,404 @@
+{
+  "checks": [
+    {
+      "name": "GPU wave parity",
+      "samples": 256,
+      "maxHeightError": 0.000011753135271130866,
+      "maxPositionError": 0.000006156540030477856,
+      "maxNormalError": 0.00000633458126603102,
+      "method": "WebGL2 transform feedback of same WAVE_GLSL used in Laya vertex shader"
+    },
+    {
+      "name": "real depth/opaque camera passes and low quality budget fallback",
+      "passes": {
+        "requested": {
+          "depth": true,
+          "opaqueColor": true
+        },
+        "requestedPasses": 2,
+        "enabledPasses": 2,
+        "ready": true,
+        "reason": null
+      },
+      "limited": {
+        "requested": {
+          "depth": true,
+          "opaqueColor": true
+        },
+        "requestedPasses": 2,
+        "enabledPasses": 0,
+        "ready": false,
+        "reason": "budget"
+      }
+    },
+    {
+      "name": "30 model creation/destruction cycles",
+      "first": {
+        "resources": 46,
+        "cpuBytes": 4509052,
+        "gpuBytesEstimated": 4509052,
+        "models": {
+          "entries": 3,
+          "references": 4,
+          "pending": 0,
+          "loads": 3,
+          "phases": [
+            {
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-navigator.bin",
+              "phase": "ready",
+              "references": 2
+            },
+            {
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-diver.bin",
+              "phase": "ready",
+              "references": 1
+            },
+            {
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-trailblazer.bin",
+              "phase": "ready",
+              "references": 1
+            }
+          ],
+          "gpuReady": "requires-first-draw",
+          "instances": 4
+        },
+        "budget": {
+          "counts": {
+            "mesh": 2,
+            "texture": 0,
+            "renderTarget": 0
+          },
+          "estimatedBytes": 980992,
+          "memoryMeasurement": "estimate"
+        },
+        "inventory": {
+          "counts": {
+            "mesh": 6,
+            "texture": 15,
+            "renderTarget": 7
+          },
+          "resources": 46,
+          "estimatedBytes": 34472624,
+          "meshBytes": 4509052,
+          "textureBytes": 4322596,
+          "renderTargetBytes": 25640976,
+          "memoryMeasurement": "estimate",
+          "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+        }
+      },
+      "last": {
+        "resources": 46,
+        "cpuBytes": 4509052,
+        "gpuBytesEstimated": 4509052,
+        "models": {
+          "entries": 3,
+          "references": 4,
+          "pending": 0,
+          "loads": 3,
+          "phases": [
+            {
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-navigator.bin",
+              "phase": "ready",
+              "references": 2
+            },
+            {
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-diver.bin",
+              "phase": "ready",
+              "references": 1
+            },
+            {
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-trailblazer.bin",
+              "phase": "ready",
+              "references": 1
+            }
+          ],
+          "gpuReady": "requires-first-draw",
+          "instances": 4
+        },
+        "budget": {
+          "counts": {
+            "mesh": 2,
+            "texture": 0,
+            "renderTarget": 0
+          },
+          "estimatedBytes": 980992,
+          "memoryMeasurement": "estimate"
+        },
+        "inventory": {
+          "counts": {
+            "mesh": 6,
+            "texture": 15,
+            "renderTarget": 7
+          },
+          "resources": 46,
+          "estimatedBytes": 34472624,
+          "meshBytes": 4509052,
+          "textureBytes": 4322596,
+          "renderTargetBytes": 25640976,
+          "memoryMeasurement": "estimate",
+          "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+        }
+      }
+    },
+    {
+      "name": "independent cloned materials, shared JPEG still live",
+      "material": {
+        "different": true,
+        "other": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "before": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "changedBefore": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "changed": [
+          1,
+          0.1,
+          0.1,
+          1
+        ]
+      }
+    },
+    {
+      "name": "partial buffer update + bounds",
+      "dynamic": {
+        "cpu": 2,
+        "bound": 2
+      }
+    },
+    {
+      "name": "roof occludes rainfall",
+      "rain": 0
+    },
+    {
+      "name": "projection/ray 1200x800 DPR1",
+      "alignment": {
+        "miss": 0.00019292117838898902,
+        "canvas": 1200,
+        "css": 1200,
+        "dpr": 1,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 1200x800 DPR2",
+      "alignment": {
+        "miss": 0.00019306126653660926,
+        "canvas": 1800,
+        "css": 1200,
+        "dpr": 2,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 1200x800 DPR3",
+      "alignment": {
+        "miss": 0.00019315257400215303,
+        "canvas": 1800,
+        "css": 1200,
+        "dpr": 3,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 390x844 DPR1",
+      "alignment": {
+        "miss": 0.00022820496330501068,
+        "canvas": 390,
+        "css": 390,
+        "dpr": 1,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 390x844 DPR2",
+      "alignment": {
+        "miss": 0.00022871823311276915,
+        "canvas": 585,
+        "css": 389.8141174316406,
+        "dpr": 2,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 390x844 DPR3",
+      "alignment": {
+        "miss": 0.0002287991630393815,
+        "canvas": 585,
+        "css": 389.8141174316406,
+        "dpr": 3,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 844x390 DPR1",
+      "alignment": {
+        "miss": 0.00019303952647099762,
+        "canvas": 844,
+        "css": 844,
+        "dpr": 1,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 844x390 DPR2",
+      "alignment": {
+        "miss": 0.00019292294948456453,
+        "canvas": 1266,
+        "css": 844,
+        "dpr": 2,
+        "label": true
+      }
+    },
+    {
+      "name": "projection/ray 844x390 DPR3",
+      "alignment": {
+        "miss": 0.0001926944865003245,
+        "canvas": 1266,
+        "css": 844,
+        "dpr": 3,
+        "label": true
+      }
+    },
+    {
+      "name": "two-touch movement/rotation and release"
+    },
+    {
+      "name": "scene quality applied and logical resource inventory",
+      "inventory": {
+        "counts": {
+          "mesh": 6,
+          "texture": 15,
+          "renderTarget": 13
+        },
+        "resources": 52,
+        "estimatedBytes": 69235144,
+        "meshBytes": 4509052,
+        "textureBytes": 4322596,
+        "renderTargetBytes": 60403496,
+        "memoryMeasurement": "estimate",
+        "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+      }
+    },
+    {
+      "name": "actual WEBGL_lose_context rebuild restores snapshot",
+      "generation": 2
+    },
+    {
+      "name": "isolated preview opens and releases realm"
+    },
+    {
+      "name": "opaque-origin sandbox iframe with relative models/JPG"
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "metrics": {
+    "id": "browser",
+    "ready": true,
+    "elapsedSeconds": 14.537699999928474,
+    "activeSeconds": 13.747599999904633,
+    "frames": 825,
+    "p50": 16.600000023841858,
+    "p95": 17.5,
+    "p99": 17.800000071525574,
+    "longFrames": 0,
+    "gpuTimeMs": null,
+    "gpuTimeReason": "GPU timer unavailable / not collected",
+    "drawCalls": 15,
+    "triangles": 283720,
+    "quality": "medium",
+    "dpr": 1,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "viewport": {
+      "width": 1280,
+      "height": 740
+    },
+    "population": {
+      "characters": 4,
+      "rafts": 1,
+      "boats": 1,
+      "buildings": 1,
+      "resources": 48,
+      "rain": 0
+    },
+    "resources": {
+      "resources": 46,
+      "cpuBytes": 4509052,
+      "gpuBytesEstimated": 4509052,
+      "models": {
+        "entries": 3,
+        "references": 4,
+        "pending": 0,
+        "loads": 3,
+        "phases": [
+          {
+            "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-navigator.bin",
+            "phase": "ready",
+            "references": 2
+          },
+          {
+            "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-diver.bin",
+            "phase": "ready",
+            "references": 1
+          },
+          {
+            "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-trailblazer.bin",
+            "phase": "ready",
+            "references": 1
+          }
+        ],
+        "gpuReady": "requires-first-draw",
+        "instances": 4
+      },
+      "budget": {
+        "counts": {
+          "mesh": 2,
+          "texture": 0,
+          "renderTarget": 0
+        },
+        "estimatedBytes": 980992,
+        "memoryMeasurement": "estimate"
+      },
+      "inventory": {
+        "counts": {
+          "mesh": 6,
+          "texture": 15,
+          "renderTarget": 5
+        },
+        "resources": 46,
+        "estimatedBytes": 24797872,
+        "meshBytes": 4509052,
+        "textureBytes": 4322596,
+        "renderTargetBytes": 15966224,
+        "memoryMeasurement": "estimate",
+        "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+      }
+    },
+    "interruptions": 0,
+    "state": {
+      "time": 13.74949999999994,
+      "weather": false,
+      "route": false,
+      "target": {
+        "x": 0,
+        "y": 0.2,
+        "z": 0
+      },
+      "quality": "medium"
+    },
+    "selected": ""
+  },
+  "verifiedAt": "2026-10-30T06:50:43.108Z"
+}

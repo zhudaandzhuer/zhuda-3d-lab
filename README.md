@@ -26,6 +26,8 @@ npm test
 GAME_URL=http://localhost:8914/ npm test
 ```
 
+正式 Pages 網址另通過同一套 20 項檢查，見 `evidence/production-report.json`；根路徑與 repository subpath 的報告也分別保存。
+
 測試會啟動 localhost:8915 的 repository subpath，透過 Chrome CDP 操作真實 WebGL。報告寫到 `evidence/browser-report.json`，測試失敗會保留 partial report。CI 在 Linux Chrome 執行 typecheck／build／browser test。
 
 ## 資產來源與邊界

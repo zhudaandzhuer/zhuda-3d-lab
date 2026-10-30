@@ -44,17 +44,17 @@
           "loads": 3,
           "phases": [
             {
-              "key": "http://localhost:8914/models/zhuda-navigator.bin",
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-navigator.bin",
               "phase": "ready",
               "references": 2
             },
             {
-              "key": "http://localhost:8914/models/zhuda-diver.bin",
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-diver.bin",
               "phase": "ready",
               "references": 1
             },
             {
-              "key": "http://localhost:8914/models/zhuda-trailblazer.bin",
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-trailblazer.bin",
               "phase": "ready",
               "references": 1
             }
@@ -97,17 +97,17 @@
           "loads": 3,
           "phases": [
             {
-              "key": "http://localhost:8914/models/zhuda-navigator.bin",
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-navigator.bin",
               "phase": "ready",
               "references": 2
             },
             {
-              "key": "http://localhost:8914/models/zhuda-diver.bin",
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-diver.bin",
               "phase": "ready",
               "references": 1
             },
             {
-              "key": "http://localhost:8914/models/zhuda-trailblazer.bin",
+              "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-trailblazer.bin",
               "phase": "ready",
               "references": 1
             }
@@ -184,7 +184,7 @@
     {
       "name": "projection/ray 1200x800 DPR1",
       "alignment": {
-        "miss": 0.00019294110246666316,
+        "miss": 0.00019292117838898902,
         "canvas": 1200,
         "css": 1200,
         "dpr": 1,
@@ -194,7 +194,7 @@
     {
       "name": "projection/ray 1200x800 DPR2",
       "alignment": {
-        "miss": 0.00019306117732201562,
+        "miss": 0.00019306126653660926,
         "canvas": 1800,
         "css": 1200,
         "dpr": 2,
@@ -204,7 +204,7 @@
     {
       "name": "projection/ray 1200x800 DPR3",
       "alignment": {
-        "miss": 0.00019316362592436808,
+        "miss": 0.00019315257400215303,
         "canvas": 1800,
         "css": 1200,
         "dpr": 3,
@@ -244,7 +244,7 @@
     {
       "name": "projection/ray 844x390 DPR1",
       "alignment": {
-        "miss": 0.0001930298228868593,
+        "miss": 0.00019303952647099762,
         "canvas": 844,
         "css": 844,
         "dpr": 1,
@@ -264,7 +264,7 @@
     {
       "name": "projection/ray 844x390 DPR3",
       "alignment": {
-        "miss": 0.0001927307246987512,
+        "miss": 0.0001926944865003245,
         "canvas": 1266,
         "css": 844,
         "dpr": 3,
@@ -307,11 +307,11 @@
   "metrics": {
     "id": "browser",
     "ready": true,
-    "elapsedSeconds": 14.9835,
-    "activeSeconds": 14.882800000071526,
-    "frames": 893,
-    "p50": 16.699999928474426,
-    "p95": 17.199999928474426,
+    "elapsedSeconds": 14.537699999928474,
+    "activeSeconds": 13.747599999904633,
+    "frames": 825,
+    "p50": 16.600000023841858,
+    "p95": 17.5,
     "p99": 17.800000071525574,
     "longFrames": 0,
     "gpuTimeMs": null,
@@ -344,17 +344,17 @@
         "loads": 3,
         "phases": [
           {
-            "key": "http://localhost:8914/models/zhuda-navigator.bin",
+            "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-navigator.bin",
             "phase": "ready",
             "references": 2
           },
           {
-            "key": "http://localhost:8914/models/zhuda-diver.bin",
+            "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-diver.bin",
             "phase": "ready",
             "references": 1
           },
           {
-            "key": "http://localhost:8914/models/zhuda-trailblazer.bin",
+            "key": "https://zhudaandzhuer.github.io/zhuda-3d-lab/models/zhuda-trailblazer.bin",
             "phase": "ready",
             "references": 1
           }
@@ -388,7 +388,7 @@
     },
     "interruptions": 0,
     "state": {
-      "time": 14.882699999999934,
+      "time": 13.74949999999994,
       "weather": false,
       "route": false,
       "target": {
@@ -400,5 +400,5 @@
     },
     "selected": ""
   },
-  "verifiedAt": "2026-10-30T06:47:10.969Z"
+  "verifiedAt": "2026-10-30T06:50:43.108Z"
 }

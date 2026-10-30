@@ -1,0 +1,10 @@
+{
+  "entry": "src/Main.ts",
+  "features": [
+    "core",
+    "3d",
+    "gltf"
+  ],
+  "title": "豬大深潮 · 3D 接入驗收",
+  "outDir": "dist/web"
+}
