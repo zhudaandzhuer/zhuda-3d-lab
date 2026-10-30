@@ -6,7 +6,7 @@ import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
-  evidence = path.join(root, "evidence");
+  evidence = path.resolve(process.env.EVIDENCE_DIR || path.join(root, "evidence"));
 fs.mkdirSync(evidence, { recursive: true });
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "zhuda-arcade-qa-")),
   url = process.env.GAME_URL || "http://localhost:8915/zhuda-3d-lab/";
@@ -323,6 +323,7 @@ try {
     path.join(evidence, "browser-report.json"),
     JSON.stringify(
       {
+        sourceURL: url,
         checks,
         errors,
         failures,

@@ -1,0 +1,235 @@
+{
+  "checks": [
+    {
+      "name": "real terrain meshes and four shader fixtures render",
+      "drawCalls": 9,
+      "triangles": 8240
+    },
+    {
+      "name": "edited chunk seams, normals and exact triangle queries",
+      "maxError": 0,
+      "height": 7.078190803527832,
+      "hit": 7.078190803527832,
+      "id": "32:32"
+    },
+    {
+      "name": "LOD 1 has matching queries",
+      "residentChunks": 4,
+      "stride": 1,
+      "vertices": 4356,
+      "estimatedBufferBytes": 188544,
+      "error": 2.6645352591003757e-15
+    },
+    {
+      "name": "LOD 2 has matching queries",
+      "residentChunks": 4,
+      "stride": 2,
+      "vertices": 1156,
+      "estimatedBufferBytes": 49280,
+      "error": 0
+    },
+    {
+      "name": "LOD 4 has matching queries",
+      "residentChunks": 4,
+      "stride": 4,
+      "vertices": 324,
+      "estimatedBufferBytes": 13440,
+      "error": 0
+    },
+    {
+      "name": "terrain ray with rotated, nonuniform world transform",
+      "error": 2.0794096845860774e-7,
+      "distanceError": 1.542055620973315e-7,
+      "limited": null
+    },
+    {
+      "name": "3D region unload excludes nonresident query cells",
+      "count": 1,
+      "unloaded": null
+    },
+    {
+      "name": "2D atlas shader uniform changes actual output pixels",
+      "original": [
+        48,
+        160,
+        72,
+        255
+      ],
+      "black": [
+        0,
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "name": "2D atlas UV regions and graphics scrollRect clipping",
+      "atlasSecond": [
+        232,
+        184,
+        88,
+        255
+      ],
+      "clipped": [
+        13,
+        17,
+        23,
+        255
+      ]
+    },
+    {
+      "name": "2D atlas/solid layers, boundary paint and bounded chunk streaming",
+      "before": 8,
+      "far": 10,
+      "blocked": true,
+      "id": 3
+    },
+    {
+      "name": "2D premultiplied alpha uniform",
+      "half": [
+        30,
+        89,
+        47,
+        255
+      ],
+      "alpha": {
+        "name": "ZhudaGraphicsTint",
+        "dimension": 2,
+        "uniforms": [
+          "u_ZhudaTint"
+        ],
+        "passes": {},
+        "gpuStatus": "requires-first-draw",
+        "disposed": false
+      }
+    },
+    {
+      "name": "3D sRGB texture recipe, typed uniform and fog variants change actual output pixels",
+      "textureBefore": [
+        231,
+        183,
+        89,
+        255
+      ],
+      "textureBlack": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "foggedTexture": [
+        214,
+        170,
+        86,
+        255
+      ]
+    },
+    {
+      "name": "3D dissolve changes rendered image"
+    },
+    {
+      "name": "30 terrain, shader and 2D chunk disposal cycles",
+      "first": {
+        "counts": {
+          "mesh": 5,
+          "texture": 13,
+          "renderTarget": 5
+        },
+        "resources": 34,
+        "estimatedBytes": 16284028,
+        "meshBytes": 189384,
+        "textureBytes": 128420,
+        "renderTargetBytes": 15966224,
+        "memoryMeasurement": "estimate",
+        "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+      },
+      "last": {
+        "counts": {
+          "mesh": 5,
+          "texture": 13,
+          "renderTarget": 5
+        },
+        "resources": 34,
+        "estimatedBytes": 16284028,
+        "meshBytes": 189384,
+        "textureBytes": 128420,
+        "renderTargetBytes": 15966224,
+        "memoryMeasurement": "estimate",
+        "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+      }
+    },
+    {
+      "name": "terrain edits restore after actual context loss"
+    },
+    {
+      "name": "mobile DPR cap with 2D terrain shader"
+    },
+    {
+      "name": "invalid GLSL generates actual compile diagnostics",
+      "expectedDiagnostics": [
+        [
+          "[ShaderCompile]Error compiling shader 'ZhudaInvalidGLSLFixture' (pipelineMode=Forward)\n",
+          "undefinedERROR: 0:52: 'ZHUDA_UNDEFINED_COMPILE_TEST' : undeclared identifier\nERROR: 0:52: 'return' : function return is not matching type:\n"
+        ]
+      ]
+    },
+    {
+      "name": "terrain and shader load in opaque-origin iframe"
+    }
+  ],
+  "errors": [],
+  "failures": [],
+  "metrics": {
+    "id": "terrain-browser",
+    "ready": true,
+    "elapsedSeconds": 14.956099999904632,
+    "activeSeconds": 14.944200000047683,
+    "frames": 898,
+    "sampleWindow": "Latest at most 72000 intervals under 5000ms; long gaps excluded",
+    "sampleModeFrames": {
+      "2": 0,
+      "3": 898
+    },
+    "totalFrames": 898,
+    "excludedGaps": 0,
+    "p50": 16.699999928474426,
+    "p95": 17.600000023841858,
+    "p99": 17.90000009536743,
+    "longFrames": 0,
+    "gpuTimeMs": null,
+    "gpuTimeReason": "GPU timer unavailable / not collected",
+    "drawCalls": 9,
+    "triangles": 8240,
+    "quality": "medium",
+    "dpr": 1,
+    "mode": 3,
+    "modeFrames": {
+      "2": 0,
+      "3": 898
+    },
+    "route": false,
+    "terrain": {
+      "residentChunks": 4,
+      "stride": 1,
+      "vertices": 4356,
+      "estimatedBufferBytes": 188544
+    },
+    "mapChunks": 4,
+    "resources": {
+      "counts": {
+        "mesh": 5,
+        "texture": 13,
+        "renderTarget": 5
+      },
+      "resources": 35,
+      "estimatedBytes": 10887308,
+      "meshBytes": 189384,
+      "textureBytes": 128420,
+      "renderTargetBytes": 10569504,
+      "memoryMeasurement": "estimate",
+      "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+    },
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+  },
+  "verifiedAt": "2026-10-30T07:54:39.468Z"
+}

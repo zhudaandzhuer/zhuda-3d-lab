@@ -1,0 +1,42 @@
+{
+  "id": "vivo40-terrain",
+  "ready": true,
+  "elapsedSeconds": 1965.4976000000238,
+  "activeSeconds": 1214.209699999988,
+  "frames": 72000,
+  "p50": 16.69999998807907,
+  "p95": 19.599999964237213,
+  "p99": 21.599999964237213,
+  "longFrames": 85,
+  "gpuTimeMs": null,
+  "quality": "low",
+  "dpr": 1,
+  "mode": 2,
+  "modeFrames": {
+    "2": 57911,
+    "3": 58784
+  },
+  "route": true,
+  "terrain": {
+    "residentChunks": 4,
+    "stride": 1,
+    "vertices": 4356,
+    "estimatedBufferBytes": 188544
+  },
+  "mapChunks": 4,
+  "resources": {
+    "counts": {
+      "mesh": 5,
+      "texture": 13,
+      "renderTarget": 4
+    },
+    "resources": 34,
+    "estimatedBytes": 2530644,
+    "meshBytes": 189384,
+    "textureBytes": 128420,
+    "renderTargetBytes": 2212840,
+    "memoryMeasurement": "estimate",
+    "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+  },
+  "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+}

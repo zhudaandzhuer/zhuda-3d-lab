@@ -1,3 +1,4 @@
+import { terrainMain } from "./TerrainLab";
 import {
   Zhuda3D,
   ZhudaEngine,
@@ -41,6 +42,12 @@ window.addEventListener("error", (e) => {
   if (e.error) fail(e.error);
 });
 if (!q.has("runtime")) {
+  if (q.has("terrain")) {
+    document.querySelector("h1")!.textContent = "豬大地形工坊";
+    document.querySelector("[data-action=weather]")!.textContent = "抬高地形";
+    document.querySelector("[data-action=route]")!.textContent = "圖塊筆刷";
+    document.querySelector("[data-action=preview]")!.textContent = "2D / 3D";
+  }
   document.body.className = "host";
   ($("quality") as HTMLSelectElement).value = q.get("quality") || "medium";
   let preview: ZhudaRuntimeHost | undefined;
@@ -59,7 +66,7 @@ if (!q.has("runtime")) {
   document.querySelectorAll<HTMLButtonElement>("[data-action]").forEach(
     (b) =>
       (b.onclick = () => {
-        if (b.dataset.action === "preview") {
+        if (b.dataset.action === "preview" && !q.has("terrain")) {
           $("preview").hidden = false;
           preview?.dispose();
           preview = new ZhudaRuntimeHost(
@@ -79,7 +86,7 @@ if (!q.has("runtime")) {
   (window as any).labHost = host;
 } else {
   document.body.className = "runtime";
-  main().catch(fail);
+  (q.has("terrain") ? terrainMain() : main()).catch(fail);
 }
 async function main() {
   const preview = q.get("runtime") === "preview",

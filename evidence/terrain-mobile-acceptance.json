@@ -1,0 +1,42 @@
+{
+  "capturedAt": "2026-10-30T07:51:03.437642+00:00",
+  "scope": "Terrain/shader route captured before final world-ray-distance normalization; final pinned SDK separately passes desktop WebGL regression.",
+  "sampling": "Latest at most 72000 frame intervals under 5000ms; elapsedSeconds is session wall time; modeFrames counts the whole session, not this rolling sample window. Long interruptions are excluded, so this is not uninterrupted endurance acceptance.",
+  "quality": "low",
+  "dpr": 1,
+  "route": "Alternates 3D heightfield / 2D tile map every 30 active seconds; animated dissolve shader and camera orbit / map scroll.",
+  "devices": [
+    {
+      "device": "iphone14",
+      "rawReport": "iphone14-terrain-sample.json",
+      "sampleSeconds": 1202.709,
+      "frames": 72000,
+      "p50": 17,
+      "p95": 22,
+      "p99": 23,
+      "longFrames": 4,
+      "modeFrames": {
+        "2": 58367,
+        "3": 59314
+      },
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Mobile/15E148 Safari/604.1",
+      "gpuTimeMs": null
+    },
+    {
+      "device": "vivo40",
+      "rawReport": "vivo40-terrain-sample.json",
+      "sampleSeconds": 1214.209699999988,
+      "frames": 72000,
+      "p50": 16.69999998807907,
+      "p95": 19.599999964237213,
+      "p99": 21.599999964237213,
+      "longFrames": 85,
+      "modeFrames": {
+        "2": 57911,
+        "3": 58784
+      },
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+      "gpuTimeMs": null
+    }
+  ]
+}
