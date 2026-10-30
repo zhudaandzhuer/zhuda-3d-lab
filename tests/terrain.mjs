@@ -259,7 +259,7 @@ try {
   const g = await ev("labHost.generation");
   await ev(A + ".lose()");
   await wait(
-    `labHost.generation>${g}&&labHost.frame.contentWindow.terrainLab?.ready`,
+    `labHost.generation>${g}&&labHost.frame.contentWindow.terrainLab?.ready&&labHost.frame.contentWindow.terrainLab.tiles.getTile("build",16,6)===3`,
   );
   assert.equal(await ev(A + '.tiles.getTile("build",16,6)'), 3);
   checks.push({ name: "terrain edits restore after actual context loss" });
