@@ -1,0 +1,20 @@
+{
+  "name": "zhuda-3d-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/server.mjs",
+    "test": "node tests/browser.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zhuda-laya-engine": "github:zhudaandzhuer/zhuda-laya-engine#74a51012ceff6a9878e434d6178824fe45b91b50"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>豬大深潮 · 3D 接入驗收</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <small>ZHUDA × LAYA AIR · 3D</small>
+        <h1>豬大深潮</h1>
+        <span>海島、浮力與風暴航行</span>
+      </div>
+      <nav>
+        <button data-action="weather">晴雨切換</button
+        ><button data-action="route">自動航行</button
+        ><button data-action="preview">角色</button
+        ><select id="quality">
+          <option value="low">流暢</option>
+          <option value="medium" selected>均衡</option>
+          <option value="high">精緻</option>
+        </select>
+      </nav>
+    </header>
+    <main id="viewport"></main>
+    <aside id="overlay">
+      <div id="status">正在準備海域…</div>
+      <div id="label">領航員 · 100 HP</div>
+      <div id="controls">左側拖曳移動 · 右側拖曳轉向 · 滾輪縮放</div>
+      <button id="hit">受擊測試</button>
+    </aside>
+    <div id="preview" hidden>
+      <button id="close-preview">關閉</button>
+      <div id="preview-frame"></div>
+    </div>
+    <div id="fatal" hidden></div>
+    <!-- ZHUDA_LIBS --><!-- ZHUDA_ENTRY -->
+  </body>
+</html>

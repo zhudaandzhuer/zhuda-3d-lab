@@ -1,0 +1,147 @@
+{
+  "sourceProject": "豬大探索世界",
+  "assets": [
+    {
+      "source": "public/models/zhuda-diver-texture-0.jpg",
+      "path": "models/zhuda-diver-texture-0.jpg",
+      "bytes": 35246,
+      "sha256": "1afe10cea505f0c5aa7dba9ad64a3642513c809b66934dec9a754fb4f862ed33"
+    },
+    {
+      "source": "public/models/zhuda-diver.bin",
+      "path": "models/zhuda-diver.bin",
+      "bytes": 1212624,
+      "sha256": "efd9cc53dba0f58aa76a98834dba479bab446fa20b399401017fa37840407ae8",
+      "format": "GLB2",
+      "images": [
+        {
+          "name": "Material",
+          "uri": "zhuda-diver-texture-0.jpg"
+        }
+      ],
+      "animations": 0,
+      "materials": [
+        {
+          "doubleSided": true,
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularColorFactor": [
+                2.0,
+                2.0,
+                2.0
+              ]
+            }
+          },
+          "name": "Zhuda_diver_lowpoly",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        }
+      ],
+      "primitives": 1
+    },
+    {
+      "source": "public/models/zhuda-navigator-texture-0.jpg",
+      "path": "models/zhuda-navigator-texture-0.jpg",
+      "bytes": 38729,
+      "sha256": "9aee9454f648aa462ff618152947e1da6a66b805a742476133e0a04eadfa828c"
+    },
+    {
+      "source": "public/models/zhuda-navigator.bin",
+      "path": "models/zhuda-navigator.bin",
+      "bytes": 1216116,
+      "sha256": "a67d7279a020b030bff3226f92f9ffc854e8636e71a227baa9441814ec3a2c16",
+      "format": "GLB2",
+      "images": [
+        {
+          "name": "Material",
+          "uri": "zhuda-navigator-texture-0.jpg"
+        }
+      ],
+      "animations": 0,
+      "materials": [
+        {
+          "doubleSided": true,
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularColorFactor": [
+                2.0,
+                2.0,
+                2.0
+              ]
+            }
+          },
+          "name": "Zhuda_navigator_lowpoly",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        }
+      ],
+      "primitives": 1
+    },
+    {
+      "source": "public/models/zhuda-trailblazer-texture-0.jpg",
+      "path": "models/zhuda-trailblazer-texture-0.jpg",
+      "bytes": 36518,
+      "sha256": "18b9ab77683d2c7aa542d5952d9b716982f264fe1824cc91be1e006253486b2d"
+    },
+    {
+      "source": "public/models/zhuda-trailblazer.bin",
+      "path": "models/zhuda-trailblazer.bin",
+      "bytes": 1213908,
+      "sha256": "9065e9a8c4ee239da6801998ca2652b496df0ece4110e6c01bc75553bf182bbc",
+      "format": "GLB2",
+      "images": [
+        {
+          "name": "Material",
+          "uri": "zhuda-trailblazer-texture-0.jpg"
+        }
+      ],
+      "animations": 0,
+      "materials": [
+        {
+          "doubleSided": true,
+          "extensions": {
+            "KHR_materials_specular": {
+              "specularColorFactor": [
+                2.0,
+                2.0,
+                2.0
+              ]
+            }
+          },
+          "name": "Zhuda_trailblazer_lowpoly",
+          "pbrMetallicRoughness": {
+            "baseColorTexture": {
+              "index": 0
+            },
+            "metallicFactor": 0,
+            "roughnessFactor": 0.6800000071525574
+          }
+        }
+      ],
+      "primitives": 1
+    },
+    {
+      "source": "src/coop/WaveField.js",
+      "path": "src/WaveField.js",
+      "bytes": 2959,
+      "sha256": "5da62bdbeaa571a8453f5c9d49302d85f79a1b81553e9f4b08eaca43ab68c48e"
+    }
+  ],
+  "requirements": [
+    "PBR glTF + external JPEG, node rotation preserved",
+    "4 wave Gerstner spectrum + shelter gradient: CPU and GPU",
+    "island discard, foam, fog, color output",
+    "no animations in supplied models; do not invent animated parity"
+  ],
+  "excludedDuplicates": "GLB duplicates of identical .bin bytes excluded"
+}

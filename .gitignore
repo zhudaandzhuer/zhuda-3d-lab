@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+evidence/*-partial.json
+evidence/*-verified.json
+evidence/*-final.json
+evidence/iphone14.json
+evidence/debug-*.png
+evidence/02-no-fog.png
+evidence/03-plain.png
