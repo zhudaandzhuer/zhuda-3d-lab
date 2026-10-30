@@ -24,8 +24,8 @@ export const fragment = `
 #include "Camera.glsl";
 
       uniform float coopTime,coopEnergy,coopSurge,coopSun,coopRain;uniform vec2 coopHeading;uniform vec3 u_Island;varying vec3 vSeaPosition,vSeaNormal;varying vec2 vSeaParticle,vSeaLocal;varying float vSeaHeight;
-      
-      
+
+
       float noise(vec2 p){return .5+.22*sin(p.x+sin(p.y*.72))+.17*sin(p.y*1.31+sin(p.x*.83));}
       float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
       float foamNoise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+1.),f.x),f.y);}
@@ -73,9 +73,9 @@ export const fragment = `
         vec3 color=mix(water,vec3(.58,.79,.77),foam);
         color*=.50+.50*coopSun;
         gl_FragColor=vec4(color,1.);
-        
+
         gl_FragColor=outputTransform(gl_FragColor);
-        
+
 #ifdef FOG
 gl_FragColor.rgb=scenUnlitFog(gl_FragColor.rgb);
 #endif

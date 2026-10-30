@@ -1,0 +1,106 @@
+{
+  "engineRevision": "74a51012ceff6a9878e434d6178824fe45b91b50",
+  "method": "iOS clipboard bridge with read-back verification; physical HID swipe and DOM hit button tap",
+  "checks": [
+    "Clipboard verified and Safari URL field verified",
+    "Single-finger movement changed target from origin",
+    "After release target remained fixed with no sticky motion",
+    "Hit button tinted only the first navigator instance; duplicate skin stayed pink (screenshot)"
+  ],
+  "metrics": {
+    "id": "iphone14-input",
+    "ready": true,
+    "elapsedSeconds": 134.99,
+    "activeSeconds": 134.509,
+    "frames": 8054,
+    "p50": 17,
+    "p95": 22,
+    "p99": 23,
+    "longFrames": 0,
+    "gpuTimeMs": null,
+    "gpuTimeReason": "GPU timer unavailable / not collected",
+    "drawCalls": 11,
+    "triangles": 163976,
+    "quality": "low",
+    "dpr": 1,
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Mobile/15E148 Safari/604.1",
+    "viewport": {
+      "width": 390,
+      "height": 554
+    },
+    "population": {
+      "characters": 4,
+      "rafts": 1,
+      "boats": 1,
+      "buildings": 1,
+      "resources": 48,
+      "rain": 0
+    },
+    "resources": {
+      "resources": 45,
+      "cpuBytes": 4509052,
+      "gpuBytesEstimated": 4509052,
+      "models": {
+        "entries": 3,
+        "references": 4,
+        "pending": 0,
+        "loads": 3,
+        "phases": [
+          {
+            "key": "http://192.168.2.59:8914/models/zhuda-navigator.bin",
+            "phase": "ready",
+            "references": 2
+          },
+          {
+            "key": "http://192.168.2.59:8914/models/zhuda-diver.bin",
+            "phase": "ready",
+            "references": 1
+          },
+          {
+            "key": "http://192.168.2.59:8914/models/zhuda-trailblazer.bin",
+            "phase": "ready",
+            "references": 1
+          }
+        ],
+        "gpuReady": "requires-first-draw",
+        "instances": 4
+      },
+      "budget": {
+        "counts": {
+          "mesh": 2,
+          "texture": 0,
+          "renderTarget": 0
+        },
+        "estimatedBytes": 980992,
+        "memoryMeasurement": "estimate"
+      },
+      "inventory": {
+        "counts": {
+          "mesh": 6,
+          "texture": 15,
+          "renderTarget": 4
+        },
+        "resources": 45,
+        "estimatedBytes": 10560144,
+        "meshBytes": 4509052,
+        "textureBytes": 4322596,
+        "renderTargetBytes": 1728496,
+        "memoryMeasurement": "estimate",
+        "assumptions": "Texture RGBA8, render target RGBA8 + 32-bit depth; vendor mesh accounting. Excludes driver overhead and compressed/HDR format corrections."
+      }
+    },
+    "interruptions": 0,
+    "state": {
+      "time": 134.509999999996,
+      "weather": false,
+      "route": false,
+      "target": {
+        "x": 0.3769333216349283,
+        "y": 0.2,
+        "z": -0.456108713582356
+      },
+      "quality": "low"
+    },
+    "selected": ""
+  }
+}

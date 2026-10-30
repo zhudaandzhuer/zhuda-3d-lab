@@ -39,6 +39,7 @@ GAME_URL=http://localhost:8914/ npm test
 - GPU transform feedback：同一份 WAVE_GLSL，四個時間共 256 點；最大高度差約 0.012 mm。這是波浪函式採樣，非整張畫面的逐像素一致。
 - 模型／場景反覆建立與釋放 30 次，資源數保持有界；共享 JPG 仍有效，一個角色受擊不改變另一個同皮膚角色。
 - 實際 depth／opaque camera pass 與低畫質預算拒絕；動態 buffer 更新／bounds、屋頂擋雨、DPR 1／2／3、橫豎屏 CSS 座標、雙指取消／放開、iframe 預覽拆除、WebGL context loss 還原及 opaque sandbox。
+- 最新固定版另以 iPhone 剪貼簿貼入 URL，實體觸控驗證拖曳／放開與受擊按鈕；同皮膚另一角色保持原色，見 `evidence/iphone14-input-check.json`／PNG。
 - `evidence/iphone14-10min.json`：iPhone 14 Safari 27.0.1，low、DPR 1，614.525 秒有效採樣，36,545 frames；P50 17 ms、P95 20 ms、P99 24 ms，>50 ms 長幀 0。採樣期間自動航行及每 45 秒晴雨交替。
 
 手機負載固定為 4 角色、1 木筏、1 船、1 雨棚、48 物資與最多 160 雨滴；不是百人完整地圖。GPU 時間未量測，資源容量是估算；記錄中的 vendor gpuBytesEstimated 也不是 driver measurement。Android 當時由其他自動化佔用，未宣稱通過。
